@@ -36,7 +36,7 @@ namespace JokesWebApp.Controllers
         // POST: Jokes/ShowSearchResults
         public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
         {
-            var jokes = await _context.Joke.ToListAsync();
+            var jokes = await _context.Joke.Where(j => j.JokeQuestion.Contains(SearchPhrase)).ToListAsync();
             return View("Index", jokes);
         }
 
